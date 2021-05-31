@@ -1,0 +1,263 @@
+# include <iostream>
+using namespace std;
+void book(char, int, int);
+int main()
+{
+    char selection = 0;
+    int row2 = 0, col2 = 0;
+
+    book(selection, row2, col2);
+
+    return 0;
+}
+void book(char, int, int)
+{
+    char selection;
+    const char TAKEN = '#';//seats taken
+    const char EMPTY = '*';//seats free
+    const int row = 15;//number of rows
+    const int col = 20;//number of col
+    char map[row][col];//array to hold seat chart
+    int number = 0;
+    int Age[100], i;
+    char kind = 0;
+    double price[100];
+
+
+    for (int i = 0; i < row; i++)//initiating array
+    {
+        for (int j = 0; j < col; j++)
+        {
+            map[i][j] = EMPTY;
+        }
+    }
+
+    do
+    {
+        cout<<"***************************************************"<<endl;
+        cout<<"***************************************************"<<endl;
+        cout<<"\t\tWELCOME IN BOOKING TICKET\t\t"<<endl;
+        cout<<"***************************************************"<<endl;
+        cout<<"***************************************************"<<endl;
+        int sum = 0;
+        cout << "-------------------------------------------------------" << endl;
+        cout << "1) Buy a ticket" << endl;
+        cout << "Q) Quit program" << endl;
+        cout << "Please make a selection: ";
+        cin >> selection;
+
+        if (selection == '1')
+        {
+        	cout<<"------------------------------------------------------\n\n\n";
+            cout << "What kind of ticket  you want \n \t 1)VIP Halls \n \t 2)Usuall Halls \n";
+            cin >> kind;
+
+
+            if (kind == '1')
+            {
+                cout << "Ticket price per person = 200 pound \n\n\ ";
+               	cout<<"------------------------------------------------------\n\n\n";
+
+                cout << "How many ticket you want \n ";
+                cin >> number;
+
+                for (int i = 0; i < number; i++)
+                {
+                	cout<<"------------------------------------------------------\n\n\n";
+
+                    cout << "How old is the owner for a ticket " << i + 1 << endl;
+                    cin >> Age[i];
+
+                    if (Age[i] >= 10 && Age[i] < 15)
+                    {
+                        cout << "\t********* \n";
+                        cout << Age[i] << " years \n He won with us a 10% discount\n ";
+                        price[i] = 180;
+                        cout << "The price ticket become " << price[i]<<endl;
+                       // cout << "\t********* \n";
+
+                    }
+
+                    else if (Age[i] >= 15 && Age[i] < 20)
+                    {
+
+                        cout << "\t********** \n";
+                        cout << Age[i] << " years \n He won with us a 5% discount\n ";
+                        price[i] = 190;
+                        cout << "The price ticket become " << price[i]<<endl;
+                       // cout << "\t********** \n";
+
+                    }
+
+                    else if (Age[i] >= 20)
+                    {
+
+
+                        cout << "\t********* \n";
+                        price[i] = 200;
+                        cout << Age[i] << " years \n the price is = 200"<<endl;
+                       // cout << "\t********* \n";
+
+                    }
+                    else
+                    {
+
+                        cout << "\t******** \n";
+                        cout << Age[i] << " years \n He won with us a 50% discount\n ";
+                        price[i] = 100;
+                        cout << "The price ticket become " << price[i]<<endl;
+                       // cout << "\t******** \n";
+                    }
+                    sum += price[i];
+
+                }
+                 cout<<"\n-----------------------------------------------------------\n";
+                cout << "The Total price is \n" << sum << endl;
+
+                for (int i = 0; i < number; i++)
+                {
+                    int row2, col2;
+                    const char TAKEN = '#';//seats taken
+                    const char EMPTY = '*';//seats free
+                    const int row = 15;//number of rows
+                    const int col = 20;//number of col
+                    char map[row][col];//array to hold seat chart
+                     cout << "\n--------------------------------------------------\n";
+                    cout << "Please enter a row number and a seat number for the ticket: " << i + 1 << endl;
+                    cout << "Row # :";
+                    cin >> row2; row2--; // To start from 0
+                    cout << endl;
+                    cout << "Seat # :";
+                    cin >> col2; col2--; // To start from 0
+                     cout<<"-----------------------------------------------------------\n";
+                    if (map[row2][col2] == TAKEN)
+                    {
+                        cout << "This seat is taken! Try another one. \n";
+                        number += 1; 
+                        continue; //To start the loop again
+                    }
+                    else 
+                        map[row2][col2] = TAKEN;
+                    // Add the next loop to immediately see the effects:
+
+                    for (int i = 0; i < row; i++)
+                    {
+                        for (int j = 0; j < col; j++)
+                            cout << map[i][j]; //to print the matrix with reserved seats
+                        cout << endl;
+                    }
+                }
+            }
+
+
+            else if (kind == '2')
+            {
+                cout << "Ticket price per person = 100 pound \n\n\ ";
+               	cout<<"------------------------------------------------------\n\n\n";
+
+                cout << "How many ticket you want \n ";
+                cin >> number;
+
+                for (int i = 0; i < number; i++)
+                {
+              		cout<<"------------------------------------------------------\n\n\n";
+
+                    cout << "How old is the owner for a ticket " << i + 1 << endl;
+                    cin >> Age[i];
+
+
+                    if (Age[i] >= 10 && Age[i] < 15)
+                    {
+                        cout << "\t******************************************* \n";
+                        price[i] = 90;
+                        cout << Age[i] << " years \n He won with us a 5% discount\nThe price ticket become " << price[i] <<"\n";
+                         cout << "\n----------------------------------------------\n";
+
+                    }
+
+                    else if (Age[i] >= 15 && Age[i] < 20)
+                    {
+                        cout << "\t******************************************** \n";
+                        price[i] = 95;
+                        cout << Age[i] << " years \n He won with us a 5% discount\nThe price ticket become " << price[i] << "\n";
+                        cout << "\n----------------------------------------------\n";
+
+                    }
+
+                    else if (Age[i] > 20)
+                    {
+                        cout << "\t******************************************** \n";
+                        price[i] = 100;
+                        cout << Age[i] << " years \n the price is = 100";
+                        cout << "\n----------------------------------------------\n";
+                    }
+
+                    else
+                    {
+                        cout << "\t********************************************\n";
+                        cout << Age[i] << " years \n He won with us a 50% discount\n ";
+                        price[i] = 50;
+                        cout << "The price ticket become " << price[i]<<"\n";
+                        
+                         cout<<"-----------------------------------------------------------\n";
+
+                    }
+                    sum += price[i];
+                     cout<<"-----------------------------------------------------------\n";
+                }
+               	cout<<"------------------------------------------------------\n\n\n";
+                cout << "The Total price is \n" << sum <<endl;
+
+
+                for (int i = 0; i < number; i++)
+                {
+                    int row2, col2;
+                    const char TAKEN = '#';//seats taken
+                    const char EMPTY = '*';//seats free
+                    const int row = 15;//number of rows
+                    const int col = 20;//number of col
+                    char map[row][col];//array to hold seat chart
+                    cout<<"------------------------------------------------------\n\n\n";
+                    cout << "Please enter a row number and a seat number for the ticket: " << i + 1 << endl;
+                    cout << "Row # :";
+                    cin >> row2; row2--;
+                    cout << endl;
+                    cout << "Seat # :";
+                    cin >> col2; col2--;
+                    cout<<"------------------------------------------------------\n\n\n";
+                    if (map[row2][col2] == TAKEN)
+                    {
+                        cout << "This seat is taken! Try another one. \n";
+                        number += 1;
+                        i -= 1;
+                        continue;
+                    }
+                    else
+                        map[row2][col2] = TAKEN;
+                    // Add the next loop to immediately see the effects:
+
+                    for (int i = 0; i < row; i++)
+                    {
+                        for (int j = 0; j < col; j++)
+                            cout << map[i][j];
+                        cout << endl;
+                    }
+                }
+            }
+            else
+            {
+                cout << "invalid input  please try again \n";
+            }
+
+        }
+        else if (selection == 'q' || selection == 'Q')
+        {
+            cout << "Thank you for using the program." << endl;
+            break;
+        }
+        else if (selection != '1' || selection != 'q' || selection != 'Q')
+        {
+            cout << "Invalid selection." << endl;
+        }
+    } while (selection != '1' || selection != 'q' || selection != 'Q');
+}
